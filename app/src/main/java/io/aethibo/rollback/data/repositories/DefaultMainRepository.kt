@@ -1,4 +1,6 @@
 package io.aethibo.rollback.data.repositories
 
-class DefaultMainRepository : MainRepository {
+import io.aethibo.rollback.data.datasource.MainRemoteDataSource
+
+class DefaultMainRepository(private val remoteAccess: MainRemoteDataSource) : MainRepository {
 }
