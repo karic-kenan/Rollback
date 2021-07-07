@@ -1,18 +1,20 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion buildConfig.targetSdk
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "io.aethibo.rollback"
-        minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode buildConfig.version.code
+        versionName buildConfig.version.name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,10 +25,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -34,12 +42,55 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // Kotlin
+    implementation libs.kotlinLib
+
+    // Android
+    implementation libs.appCompat
+    implementation libs.coreKtx
+    implementation libs.constraintLayout
+    implementation libs.viewBindingDelegate
+    implementation libs.timber
+
+    // Navigation
+    implementation libs.navFragmentKtx
+    implementation libs.navUiKtx
+
+    // Coroutines
+    implementation libs.coroutinesCore
+    implementation libs.coroutinesAndroid
+
+    // Material Design
+    implementation libs.materialDesign
+
+    // Coil-kt
+    implementation libs.coil
+
+    // Retrofit
+    implementation libs.retrofit
+
+    // Gson
+    implementation libs.gson
+
+    // OkHttp
+    implementation libs.okHttp
+    implementation libs.okHttpMockWebServer
+
+    // Moshi
+    implementation libs.moshi
+    implementation libs.moshiConverter
+    kapt libs.moshiCodeGen
+
+    // Koin
+    implementation libs.koinAndroid
+
+    // Testing
+    testImplementation libs.coreTest
+    testImplementation libs.coroutinesTest
+    testImplementation libs.okhttpTest
+    testImplementation libs.junitTest
+
+    // Android Testing
+    androidTestImplementation libs.extJunitTest
+    androidTestImplementation libs.espressoTest
 }

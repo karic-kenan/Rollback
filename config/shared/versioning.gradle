@@ -1,0 +1,162 @@
+ext.buildConfig = [
+        'minSdk'   : 24,
+        'targetSdk': 30,
+
+        'version'  : [
+                'major': 1,
+                'minor': 0,
+                'patch': 0,
+                'beta' : 0,
+                'build': 0
+        ]
+]
+
+ext.buildConfig.version['code'] = buildConfig.version.major * 10000000 +
+        buildConfig.version.minor * 100000 +
+        buildConfig.version.patch * 1000 +
+        buildConfig.version.beta * 100 +
+        buildConfig.version.build
+
+ext.buildConfig.version['name'] = "${buildConfig.version.major}.${buildConfig.version.minor}.${buildConfig.version.patch}.${buildConfig.version.code}"
+
+ext.versions = [
+
+        /**
+         * Build
+         */
+        kotlinVersion             : '1.5.20',
+        gradleToolsVersion        : '4.2.2',
+
+        /**
+         * Android
+         */
+        appCompatVersion          : '1.3.0',
+        coreKtxVersion            : '1.6.0',
+        constraintLayoutVersion   : '2.0.4',
+        navComponentsVersion      : '2.3.5',
+
+        /**
+         * Dependencies
+         */
+        materialDesignVersion     : '1.4.0',
+        coilVersion               : '1.1.1',
+        viewBindingDelegateVersion: '1.4.6',
+        timberVersion             : '4.7.1',
+
+        /**
+         * Retrofit, Gson, and OkHttp
+         */
+        retrofitVersion           : '2.9.0',
+        gsonVersion               : '2.8.6',
+        okHttpVersion             : '5.0.0-alpha.2',
+        okHttpMockWebServerVersion: '5.0.0-alpha.2',
+
+        /**
+         * Moshi
+         */
+        moshiKotlinVersion        : '1.11.0',
+        moshiConverterVersion     : '2.9.0',
+        moshiKotlinCodegenVersion : '1.11.0',
+
+        /**
+         * Koin
+         */
+        koinVersion               : '3.1.2',
+
+        /**
+         * Coroutines
+         */
+        coroutinesCoreVersion     : '1.4.3',
+        coroutinesAndroidVersion  : '1.4.3',
+
+        /**
+         * Testing
+         */
+        coroutinesTestVersion     : '1.3.7',
+        junitTestVersion          : '4.13.2',
+        extJunitTetVersion        : '1.1.3',
+        espressoTestVersion       : '3.4.0',
+        okhttpTestVersion         : '5.0.0-alpha.2',
+        coreTestVersion           : '2.1.0'
+]
+
+ext.libs = [
+
+        /**
+         * Kotlin
+         */
+        kotlinLib          : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlinVersion}",
+
+        /**
+         * Android
+         */
+        appCompat          : "androidx.appcompat:appcompat:${versions.appCompatVersion}",
+        coreKtx            : "androidx.core:core-ktx:${versions.coreKtxVersion}",
+        constraintLayout   : "androidx.constraintlayout:constraintlayout:${versions.constraintLayoutVersion}",
+        viewBindingDelegate: "com.github.kirich1409:viewbindingpropertydelegate:${versions.viewBindingDelegateVersion}",
+        timber             : "com.jakewharton.timber:timber:${versions.timberVersion}",
+
+        /**
+         * Navigation components
+         */
+        navFragmentKtx     : "androidx.navigation:navigation-fragment-ktx:${versions.navComponentsVersion}",
+        navUiKtx           : "androidx.navigation:navigation-ui-ktx:${versions.navComponentsVersion}",
+
+        /**
+         * Coroutines
+         */
+        coroutinesCore     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutinesCoreVersion}",
+        coroutinesAndroid  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesAndroidVersion}",
+
+        /**
+         * Material design
+         */
+        materialDesign     : "com.google.android.material:material:${versions.materialDesignVersion}",
+
+        /**
+         * Coil-kt
+         */
+        coil               : "io.coil-kt:coil:${versions.coilVersion}",
+
+        /**
+         * Retrofit
+         */
+        retrofit           : "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
+
+        /**
+         * Gson
+         */
+        gson               : "com.google.code.gson:gson:${versions.gsonVersion}",
+
+        /**
+         * OkHttp
+         */
+        okHttp             : "com.squareup.okhttp3:okhttp:${versions.okHttpVersion}",
+        okHttpMockWebServer: "com.squareup.okhttp3:mockwebserver:${versions.okHttpMockWebServerVersion}",
+
+        /**
+         * Moshi
+         */
+        moshi              : "com.squareup.moshi:moshi-kotlin:${versions.moshiKotlinVersion}",
+        moshiConverter     : "com.squareup.retrofit2:converter-moshi:${versions.moshiConverterVersion}",
+        moshiCodeGen       : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshiKotlinCodegenVersion}",
+
+        /**
+         * Koin
+         */
+        koinAndroid        : "io.insert-koin:koin-android:${versions.koinVersion}",
+
+        /**
+         * Testing
+         */
+        coreTest           : "androidx.arch.core:core-testing:${versions.coreTestVersion}",
+        coroutinesTest     : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutinesTestVersion}",
+        okhttpTest         : "com.squareup.okhttp3:mockwebserver:${versions.okhttpTestVersion}",
+        junitTest          : "junit:junit:${versions.junitTestVersion}",
+
+        /**
+         * Android Testing
+         */
+        extJunitTest       : "androidx.test.ext:junit:${versions.extJunitTetVersion}",
+        espressoTest       : "androidx.test.espresso:espresso-core:${versions.espressoTestVersion}"
+]
