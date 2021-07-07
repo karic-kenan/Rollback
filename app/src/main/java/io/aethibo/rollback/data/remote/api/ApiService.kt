@@ -1,6 +1,5 @@
 package io.aethibo.rollback.data.remote.api
 
-import io.aethibo.rollback.domain.request.UserRequest
 import io.aethibo.rollback.domain.response.LoginResponse
 import io.aethibo.rollback.domain.response.ProductItemResponse
 import io.aethibo.rollback.domain.response.UserItemResponse
@@ -13,7 +12,7 @@ import retrofit2.http.Path
 interface ApiService {
 
     @POST("auth/login")
-    suspend fun loginUser(@Body data: UserRequest): LoginResponse
+    suspend fun loginUser(@Body data: RequestBody): LoginResponse
 
     @GET("users")
     suspend fun getUsers(): List<UserItemResponse>

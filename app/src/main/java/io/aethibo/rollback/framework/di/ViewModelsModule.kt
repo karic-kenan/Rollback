@@ -9,7 +9,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val viewModelsModule: Module = module {
-    viewModel { LoginViewModel() }
+    viewModel { LoginViewModel(get(), get()) }
     viewModel { ProductsViewModel() }
     viewModel { DetailViewModel() }
     viewModel { ProfileViewModel() }

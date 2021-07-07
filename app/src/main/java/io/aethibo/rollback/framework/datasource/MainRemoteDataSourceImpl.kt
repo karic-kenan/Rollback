@@ -30,7 +30,10 @@ class MainRemoteDataSourceImpl(
     override suspend fun loginUser(user: UserRequest): Resource<LoginResponse> =
         withContext(Dispatchers.IO) {
             safeCall {
-                val response: LoginResponse = apiService.loginUser(user)
+                val contentType: MediaType? = "application/json".toMediaTypeOrNull()
+                val body: RequestBody = Gson().toJson(user).toRequestBody(contentType)
+
+                val response: LoginResponse = apiService.loginUser(body)
 
                 Resource.Success(response)
             }
