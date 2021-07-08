@@ -1,6 +1,5 @@
 package io.aethibo.rollback.framework.datasource
 
-import com.google.gson.Gson
 import io.aethibo.rollback.data.datasource.MainRemoteDataSource
 import io.aethibo.rollback.data.mapper.ProductMapper
 import io.aethibo.rollback.data.mapper.UserMapper
@@ -16,10 +15,6 @@ import io.aethibo.rollback.framework.utils.Resource
 import io.aethibo.rollback.framework.utils.safeCall
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 
 class MainRemoteDataSourceImpl(
     private val apiService: ApiService,
@@ -30,10 +25,7 @@ class MainRemoteDataSourceImpl(
     override suspend fun loginUser(user: UserRequest): Resource<LoginResponse> =
         withContext(Dispatchers.IO) {
             safeCall {
-                val contentType: MediaType? = "application/json".toMediaTypeOrNull()
-                val body: RequestBody = Gson().toJson(user).toRequestBody(contentType)
-
-                val response: LoginResponse = apiService.loginUser(body)
+                val response: LoginResponse = apiService.loginUser(user)
 
                 Resource.Success(response)
             }
@@ -81,10 +73,7 @@ class MainRemoteDataSourceImpl(
     override suspend fun addProduct(data: AddProductRequest): Resource<ProductItem> =
         withContext(Dispatchers.IO) {
             safeCall {
-                val contentType: MediaType? = "application/json".toMediaTypeOrNull()
-                val body: RequestBody = Gson().toJson(data).toRequestBody(contentType)
-
-                val response: ProductItemResponse = apiService.addProduct(body)
+                val response: ProductItemResponse = apiService.addProduct(data)
                 val mappedValues: ProductItem = productMapper.mapFromEntity(response)
 
                 Resource.Success(mappedValues)

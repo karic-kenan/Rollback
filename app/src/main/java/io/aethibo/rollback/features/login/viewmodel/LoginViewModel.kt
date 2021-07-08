@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val login: LoginUserUseCase, private val getUsers: GetUsersUseCase) :
     ViewModel(), IModel<LoginState, LoginIntent> {
 
-    override val intents: Channel<LoginIntent> = Channel(Channel.BUFFERED)
+    override val intents: Channel<LoginIntent> by lazy { Channel(Channel.BUFFERED) }
 
     private val _state: MutableStateFlow<LoginState> = MutableStateFlow(LoginState())
     override val state: StateFlow<LoginState>
