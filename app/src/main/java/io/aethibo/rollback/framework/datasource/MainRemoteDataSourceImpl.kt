@@ -50,6 +50,14 @@ class MainRemoteDataSourceImpl(
         }
     }
 
+    override suspend fun getCategories(): Resource<List<String>> = withContext(Dispatchers.IO) {
+        safeCall {
+            val response: List<String> = apiService.getCategories()
+
+            Resource.Success(response)
+        }
+    }
+
     override suspend fun getProducts(): Resource<List<ProductItem>> =
         withContext(Dispatchers.IO) {
             safeCall {

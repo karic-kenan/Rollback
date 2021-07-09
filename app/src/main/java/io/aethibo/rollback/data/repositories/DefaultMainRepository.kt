@@ -19,6 +19,9 @@ class DefaultMainRepository(private val remoteAccess: MainRemoteDataSource) : Ma
     override suspend fun getUser(id: String): Resource<UserItem> =
         remoteAccess.getUser(id)
 
+    override suspend fun getCategories(): Resource<List<String>> =
+        remoteAccess.getCategories()
+
     override suspend fun getProducts(): Resource<List<ProductItem>> =
         remoteAccess.getProducts()
 

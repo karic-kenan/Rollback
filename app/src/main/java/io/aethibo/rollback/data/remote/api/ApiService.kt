@@ -18,6 +18,9 @@ interface ApiService {
     @GET("users/{id}")
     suspend fun getUser(@Path("id") id: String): UserItemResponse
 
+    @GET("products/categories")
+    suspend fun getCategories(): List<String>
+
     @GET("products")
     suspend fun getProducts(): List<ProductItemResponse>
 

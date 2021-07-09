@@ -15,6 +15,9 @@ interface MainRepository {
     suspend fun getUsers(): Resource<List<UserItem>>
     suspend fun getUser(id: String): Resource<UserItem>
 
+    // Categories handler
+    suspend fun getCategories(): Resource<List<String>>
+
     // Product handler
     suspend fun getProducts(): Resource<List<ProductItem>>
     suspend fun getProduct(id: Int): Resource<ProductItem>

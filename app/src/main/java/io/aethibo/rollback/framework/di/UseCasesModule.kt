@@ -7,8 +7,9 @@ import org.koin.dsl.module
 val useCasesModule: Module = module {
     single<LoginUserUseCase> { LoginUserUseCaseImpl(get()) }
     single<GetUsersUseCase> { GetUsersUseCaseImpl(get()) }
-    single<GetProductsUseCase> { GetProductsUseCaseImpl(get()) }
+    single<GetCategoriesUseCase> { GetCategoriesUseCaseImpl(get()) }
     single<GetProductUseCase> { GetProductUseCaseImpl(get()) }
+    single<GetProductsUseCase> { GetProductsUseCaseImpl(get()) }
     single<AddProductUseCase> { AddProductUseCaseImpl(get()) }
     single<DeleteProductUseCase> { DeleteProductUseCaseImpl(get()) }
 }

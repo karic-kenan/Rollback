@@ -2,6 +2,8 @@ package io.aethibo.rollback.features.add.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +15,7 @@ import io.aethibo.rollback.R
 import io.aethibo.rollback.databinding.FragmentAddBinding
 import io.aethibo.rollback.domain.request.AddProductRequest
 import io.aethibo.rollback.features.add.AddProductIntent.AddProduct
+import io.aethibo.rollback.features.add.AddProductIntent.GetCategories
 import io.aethibo.rollback.features.add.AddProductState
 import io.aethibo.rollback.features.add.viewmodel.AddViewModel
 import io.aethibo.rollback.features.utils.snackBar
@@ -29,8 +32,21 @@ class AddFragment : Fragment(R.layout.fragment_add), IView<AddProductState> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        handleIntents()
         validateForm()
         subscribeToObservers()
+    }
+
+    private fun handleIntents() {
+        lifecycleScope.launch {
+            viewModel.intents.send(GetCategories)
+        }
+    }
+
+    private fun subscribeToObservers() {
+        lifecycleScope.launchWhenResumed {
+            viewModel.state.collectLatest { render(it) }
+        }
     }
 
     private fun validateForm() {
@@ -47,7 +63,7 @@ class AddFragment : Fragment(R.layout.fragment_add), IView<AddProductState> {
                 binding.ilProductCategory,
                 name = "Category", builder = InputLayoutField::isNotEmpty
             )
-            inputLayout(binding.ilProductPrice, name = "Price") { isNumber().greaterThan(0) }
+            inputLayout(binding.ilProductPrice, name = "Price") { isDecimal().greaterThan(0.0) }
             submitWith(binding.btnAddProduct) { submitProduct() }
         }
     }
@@ -70,22 +86,21 @@ class AddFragment : Fragment(R.layout.fragment_add), IView<AddProductState> {
         }
     }
 
-    private fun subscribeToObservers() {
-        lifecycleScope.launchWhenResumed {
-            viewModel.state.collectLatest { render(it) }
-        }
-    }
-
     override fun render(state: AddProductState) {
         with(state) {
             binding.pbAddProduct.isVisible = isLoading
 
-            if (product != null) {
-                snackBar("Product added successfully")
-                findNavController().popBackStack()
-            }
+            product?.let { findNavController().popBackStack() }
+
+            handleCategoriesUi(categories)
 
             errorMessage?.let { snackBar(it) }
         }
+    }
+
+    private fun handleCategoriesUi(categories: List<String>) {
+        binding.btnAddProduct.isEnabled = true
+        val adapter = ArrayAdapter(requireContext(), R.layout.item_category, categories)
+        (binding.ilProductCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
     }
 }
