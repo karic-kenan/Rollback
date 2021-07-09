@@ -60,7 +60,7 @@ class MainRemoteDataSourceImpl(
             }
         }
 
-    override suspend fun getProduct(id: String): Resource<ProductItem> =
+    override suspend fun getProduct(id: Int): Resource<ProductItem> =
         withContext(Dispatchers.IO) {
             safeCall {
                 val response: ProductItemResponse = apiService.getProduct(id)

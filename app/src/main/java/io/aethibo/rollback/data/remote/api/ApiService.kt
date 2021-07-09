@@ -25,7 +25,7 @@ interface ApiService {
     suspend fun getProducts(): List<ProductItemResponse>
 
     @GET("products/{id}")
-    suspend fun getProduct(@Path("id") id: String): ProductItemResponse
+    suspend fun getProduct(@Path("id") id: Int): ProductItemResponse
 
     @POST("products")
     suspend fun addProduct(@Body data: AddProductRequest): ProductItemResponse

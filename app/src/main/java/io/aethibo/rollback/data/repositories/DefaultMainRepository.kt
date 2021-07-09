@@ -22,7 +22,7 @@ class DefaultMainRepository(private val remoteAccess: MainRemoteDataSource) : Ma
     override suspend fun getProducts(): Resource<List<ProductItem>> =
         remoteAccess.getProducts()
 
-    override suspend fun getProduct(id: String): Resource<ProductItem> =
+    override suspend fun getProduct(id: Int): Resource<ProductItem> =
         remoteAccess.getProduct(id)
 
     override suspend fun addProduct(data: AddProductRequest): Resource<ProductItem> =

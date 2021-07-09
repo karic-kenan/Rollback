@@ -17,6 +17,6 @@ interface MainRepository {
 
     // Product handler
     suspend fun getProducts(): Resource<List<ProductItem>>
-    suspend fun getProduct(id: String): Resource<ProductItem>
+    suspend fun getProduct(id: Int): Resource<ProductItem>
     suspend fun addProduct(data: AddProductRequest): Resource<ProductItem>
 }

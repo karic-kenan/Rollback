@@ -5,11 +5,11 @@ import io.aethibo.rollback.domain.mapped.ProductItem
 import io.aethibo.rollback.framework.utils.Resource
 
 interface GetProductUseCase {
-    suspend operator fun invoke(id: String): Resource<ProductItem>
+    suspend operator fun invoke(id: Int): Resource<ProductItem>
 }
 
 class GetProductUseCaseImpl(private val repository: MainRepository) : GetProductUseCase {
 
-    override suspend operator fun invoke(id: String) =
+    override suspend operator fun invoke(id: Int) =
         repository.getProduct(id)
 }
