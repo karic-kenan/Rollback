@@ -51,6 +51,7 @@ dependencies {
     implementation libs.constraintLayout
     implementation libs.viewBindingDelegate
     implementation libs.timber
+    implementation libs.vvalidator
 
     // Navigation
     implementation libs.navFragmentKtx

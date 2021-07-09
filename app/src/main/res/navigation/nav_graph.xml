@@ -37,5 +37,19 @@
         android:id="@+id/productsFragment"
         android:name="io.aethibo.rollback.features.products.view.ProductsFragment"
         android:label="ProductsFragment"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products">
+        <action
+            android:id="@+id/toAddProduct"
+            app:destination="@id/addFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="io.aethibo.rollback.features.add.view.AddFragment"
+        android:label="AddFragment"
+        tools:layout="@layout/fragment_add" />
 </navigation>

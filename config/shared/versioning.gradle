@@ -42,6 +42,7 @@ ext.versions = [
         coilVersion               : '1.2.2',
         viewBindingDelegateVersion: '1.4.6',
         timberVersion             : '4.7.1',
+        validatorVersion          : '0.5.2',
 
         /**
          * Retrofit, Gson, and OkHttp
@@ -95,6 +96,7 @@ ext.libs = [
         constraintLayout   : "androidx.constraintlayout:constraintlayout:${versions.constraintLayoutVersion}",
         viewBindingDelegate: "com.github.kirich1409:viewbindingpropertydelegate:${versions.viewBindingDelegateVersion}",
         timber             : "com.jakewharton.timber:timber:${versions.timberVersion}",
+        vvalidator         : "com.afollestad:vvalidator:${versions.validatorVersion}",
 
         /**
          * Navigation components

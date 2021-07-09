@@ -10,6 +10,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="top"
         android:indeterminate="true"
         android:indeterminateTint="#FF5722"
         android:visibility="gone"
@@ -23,4 +24,15 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_product" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:backgroundTint="#FF5722"
+        app:srcCompat="@drawable/ic_add" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

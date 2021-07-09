@@ -19,9 +19,9 @@ import io.aethibo.rollback.framework.mvibase.IView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
-class ProductsFragment : Fragment(R.layout.fragment_products), IView<ProductsState> {
+class ProductsFragment : Fragment(R.layout.fragment_products), View.OnClickListener,
+    IView<ProductsState> {
 
     private val binding: FragmentProductsBinding by viewBinding()
     private val viewModel: ProductsViewModel by viewModel()
@@ -32,14 +32,18 @@ class ProductsFragment : Fragment(R.layout.fragment_products), IView<ProductsSta
 
         handleIntents()
         setupAdapter()
+        setupClickListeners()
         subscribeToObservers()
+    }
+
+    private fun setupClickListeners() {
+        binding.btnAddProduct.setOnClickListener(this)
     }
 
     private fun setupAdapter() {
         binding.rvProductsList.adapter = productsAdapter
 
         productsAdapter.onProductEventClickListener { product ->
-            Timber.d("Product clicked: ${product.id}")
             val bundle = bundleOf("id" to product.id)
             findNavController().navigate(R.id.detailFragment, bundle)
         }
@@ -64,6 +68,12 @@ class ProductsFragment : Fragment(R.layout.fragment_products), IView<ProductsSta
             productsAdapter.submitList(products)
 
             errorMessage?.let { snackBar(it) }
+        }
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.btnAddProduct -> findNavController().navigate(ProductsFragmentDirections.toAddProduct())
         }
     }
 }
