@@ -79,4 +79,18 @@ class MainRemoteDataSourceImpl(
                 Resource.Success(mappedValues)
             }
         }
+
+    override suspend fun deleteProduct(id: Int): Resource<Boolean> =
+        withContext(Dispatchers.IO) {
+            safeCall {
+                val response: ProductItemResponse = apiService.deleteProduct(id)
+                /**
+                 * This endpoint returns the deleted product,
+                 * but we'll return custom value
+                 * boolean in case of product deletion
+                 */
+
+                Resource.Success(true)
+            }
+        }
 }

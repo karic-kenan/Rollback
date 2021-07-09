@@ -19,4 +19,5 @@ interface MainRepository {
     suspend fun getProducts(): Resource<List<ProductItem>>
     suspend fun getProduct(id: Int): Resource<ProductItem>
     suspend fun addProduct(data: AddProductRequest): Resource<ProductItem>
+    suspend fun deleteProduct(id: Int): Resource<Boolean>
 }

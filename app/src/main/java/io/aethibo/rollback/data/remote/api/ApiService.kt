@@ -5,10 +5,7 @@ import io.aethibo.rollback.domain.request.UserRequest
 import io.aethibo.rollback.domain.response.LoginResponse
 import io.aethibo.rollback.domain.response.ProductItemResponse
 import io.aethibo.rollback.domain.response.UserItemResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -29,4 +26,7 @@ interface ApiService {
 
     @POST("products")
     suspend fun addProduct(@Body data: AddProductRequest): ProductItemResponse
+
+    @DELETE("products/{id}")
+    suspend fun deleteProduct(@Path("id") id: Int): ProductItemResponse
 }

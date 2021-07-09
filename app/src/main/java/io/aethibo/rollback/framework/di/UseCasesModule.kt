@@ -10,4 +10,5 @@ val useCasesModule: Module = module {
     single<GetProductsUseCase> { GetProductsUseCaseImpl(get()) }
     single<GetProductUseCase> { GetProductUseCaseImpl(get()) }
     single<AddProductUseCase> { AddProductUseCaseImpl(get()) }
+    single<DeleteProductUseCase> { DeleteProductUseCaseImpl(get()) }
 }

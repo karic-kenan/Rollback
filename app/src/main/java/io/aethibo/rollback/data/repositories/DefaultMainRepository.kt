@@ -27,4 +27,7 @@ class DefaultMainRepository(private val remoteAccess: MainRemoteDataSource) : Ma
 
     override suspend fun addProduct(data: AddProductRequest): Resource<ProductItem> =
         remoteAccess.addProduct(data)
+
+    override suspend fun deleteProduct(id: Int): Resource<Boolean> =
+        remoteAccess.deleteProduct(id)
 }

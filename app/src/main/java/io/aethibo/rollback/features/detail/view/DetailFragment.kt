@@ -20,23 +20,30 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DetailFragment : Fragment(R.layout.fragment_detail), IView<DetailState> {
+class DetailFragment : Fragment(R.layout.fragment_detail), View.OnClickListener,
+    IView<DetailState> {
 
     private val binding: FragmentDetailBinding by viewBinding()
     private val viewModel: DetailViewModel by viewModel()
+    private var productId: Int? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        productId = arguments?.getInt("id")
+
         handleIntents()
+        setupClickListeners()
         subscribeToObservers()
+    }
+
+    private fun setupClickListeners() {
+        binding.btnDeleteProduct.setOnClickListener(this)
     }
 
     private fun handleIntents() {
         lifecycleScope.launch {
-            arguments?.getInt("id")?.let {
-                viewModel.intents.send(DetailIntent.GetProduct(it))
-            }
+            productId?.let { viewModel.intents.send(DetailIntent.GetProduct(it)) }
         }
     }
 
@@ -52,6 +59,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail), IView<DetailState> {
 
             product?.let { handleProduct(it) }
 
+            isProductDeleted?.let { if (it) snackBar("Product is deleted") }
+
             errorMessage?.let { snackBar(it) }
         }
     }
@@ -59,11 +68,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail), IView<DetailState> {
     private fun handleProduct(product: ProductItem) {
         binding.itemProductImage.load(product.image) {
             crossfade(true)
-            transformations(RoundedCornersTransformation(bottomLeft = 20f, bottomRight = 20f))
+            transformations(RoundedCornersTransformation(bottomLeft = 30f, bottomRight = 30f))
         }
         binding.itemProductTitle.text = product.title
         binding.itemProductDescription.text = product.description
         binding.itemProductCategory.text = product.category
         binding.itemProductPrice.text = "$${product.price}"
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.btnDeleteProduct -> lifecycleScope.launch {
+                productId?.let { viewModel.intents.send(DetailIntent.DeleteProduct(it)) }
+            }
+        }
     }
 }
