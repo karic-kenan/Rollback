@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Rollback</string>
-    <string name="labelLoginTitle">Login to Rollback</string>
-    <string name="labelLoginSubtitle">Select one of the accounts bellow to begin the authorization process</string>
+    <string name="labelLoginTitle">Sign in</string>
+    <string name="labelLoginSubtitle">Wait for the account to get fetched, then proceed with signing into that account</string>
 </resources>
