@@ -42,6 +42,11 @@ android {
 
 dependencies {
 
+    // Modules
+    implementation project(':usecases')
+    implementation project(':data')
+    implementation project(':domain')
+
     // Kotlin
     implementation libs.kotlinLib
     implementation libs.kotlinReflect

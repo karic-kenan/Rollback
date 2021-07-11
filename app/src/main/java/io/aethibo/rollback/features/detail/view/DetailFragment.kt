@@ -10,7 +10,7 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import io.aethibo.rollback.R
 import io.aethibo.rollback.databinding.FragmentDetailBinding
-import io.aethibo.rollback.domain.mapped.ProductItem
+import io.aethibo.domain.mapped.ProductItem
 import io.aethibo.rollback.features.detail.DetailIntent
 import io.aethibo.rollback.features.detail.DetailState
 import io.aethibo.rollback.features.detail.viewmodel.DetailViewModel
@@ -65,7 +65,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail), View.OnClickListener,
         }
     }
 
-    private fun handleProduct(product: ProductItem) {
+    private fun handleProduct(product: io.aethibo.domain.mapped.ProductItem) {
         binding.itemProductImage.load(product.image) {
             crossfade(true)
             transformations(RoundedCornersTransformation(bottomLeft = 30f, bottomRight = 30f))

@@ -2,14 +2,13 @@ package io.aethibo.rollback.features.login.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.aethibo.rollback.domain.mapped.UserItem
-import io.aethibo.rollback.domain.request.UserRequest
 import io.aethibo.rollback.features.login.LoginIntent
 import io.aethibo.rollback.features.login.LoginState
 import io.aethibo.rollback.framework.mvibase.IModel
-import io.aethibo.rollback.framework.utils.Resource
-import io.aethibo.rollback.usecases.GetUsersUseCase
-import io.aethibo.rollback.usecases.LoginUserUseCase
+import io.aethibo.data.utils.Resource
+import io.aethibo.domain.mapped.UserItem
+import io.aethibo.usecases.GetUsersUseCase
+import io.aethibo.usecases.LoginUserUseCase
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -41,7 +40,7 @@ class LoginViewModel(private val login: LoginUserUseCase, private val getUsers: 
         }
     }
 
-    private fun loginUser(userRequest: UserRequest) {
+    private fun loginUser(userRequest: io.aethibo.domain.request.UserRequest) {
         viewModelScope.launch {
             updateState { it.copy(isLoading = true) }
 

@@ -1,18 +1,16 @@
 package io.aethibo.rollback.framework.datasource
 
-import io.aethibo.rollback.data.datasource.MainRemoteDataSource
-import io.aethibo.rollback.data.mapper.ProductMapper
-import io.aethibo.rollback.data.mapper.UserMapper
-import io.aethibo.rollback.data.remote.api.ApiService
-import io.aethibo.rollback.domain.mapped.ProductItem
-import io.aethibo.rollback.domain.mapped.UserItem
-import io.aethibo.rollback.domain.request.AddProductRequest
-import io.aethibo.rollback.domain.request.UserRequest
-import io.aethibo.rollback.domain.response.LoginResponse
-import io.aethibo.rollback.domain.response.ProductItemResponse
-import io.aethibo.rollback.domain.response.UserItemResponse
-import io.aethibo.rollback.framework.utils.Resource
-import io.aethibo.rollback.framework.utils.safeCall
+import io.aethibo.data.datasource.MainRemoteDataSource
+import io.aethibo.data.mapper.ProductMapper
+import io.aethibo.data.mapper.UserMapper
+import io.aethibo.data.api.ApiService
+import io.aethibo.data.utils.Resource
+import io.aethibo.domain.mapped.ProductItem
+import io.aethibo.domain.mapped.UserItem
+import io.aethibo.domain.response.LoginResponse
+import io.aethibo.data.utils.safeCall
+import io.aethibo.domain.response.ProductItemResponse
+import io.aethibo.domain.response.UserItemResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -22,7 +20,7 @@ class MainRemoteDataSourceImpl(
     private val productMapper: ProductMapper
 ) : MainRemoteDataSource {
 
-    override suspend fun loginUser(user: UserRequest): Resource<LoginResponse> =
+    override suspend fun loginUser(user: io.aethibo.domain.request.UserRequest): Resource<LoginResponse> =
         withContext(Dispatchers.IO) {
             safeCall {
                 val response: LoginResponse = apiService.loginUser(user)
@@ -78,7 +76,7 @@ class MainRemoteDataSourceImpl(
             }
         }
 
-    override suspend fun addProduct(data: AddProductRequest): Resource<ProductItem> =
+    override suspend fun addProduct(data: io.aethibo.domain.request.AddProductRequest): Resource<ProductItem> =
         withContext(Dispatchers.IO) {
             safeCall {
                 val response: ProductItemResponse = apiService.addProduct(data)
@@ -92,6 +90,11 @@ class MainRemoteDataSourceImpl(
         withContext(Dispatchers.IO) {
             safeCall {
                 val response: ProductItemResponse = apiService.deleteProduct(id)
+                /**
+                 * This endpoint returns the deleted product,
+                 * but we'll return custom value
+                 * boolean in case of product deletion
+                 */
                 /**
                  * This endpoint returns the deleted product,
                  * but we'll return custom value

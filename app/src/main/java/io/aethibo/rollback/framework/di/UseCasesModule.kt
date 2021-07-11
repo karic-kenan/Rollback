@@ -1,6 +1,6 @@
 package io.aethibo.rollback.framework.di
 
-import io.aethibo.rollback.usecases.*
+import io.aethibo.usecases.*
 import org.koin.core.module.Module
 import org.koin.dsl.module
 

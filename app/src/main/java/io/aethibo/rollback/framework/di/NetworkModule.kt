@@ -2,9 +2,9 @@ package io.aethibo.rollback.framework.di
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import io.aethibo.rollback.data.remote.api.ApiService
-import io.aethibo.rollback.data.remote.api.interceptors.TimberLoggingInterceptor
+import io.aethibo.data.api.ApiService
 import io.aethibo.rollback.framework.utils.AppConst
+import io.aethibo.rollback.framework.utils.interceptors.TimberLoggingInterceptor
 import okhttp3.OkHttpClient
 import org.koin.core.module.Module
 import org.koin.dsl.module

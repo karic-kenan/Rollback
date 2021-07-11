@@ -1,2 +1,5 @@
 rootProject.name = "Rollback"
 include ':app'
+include ':domain'
+include ':usecases'
+include ':data'

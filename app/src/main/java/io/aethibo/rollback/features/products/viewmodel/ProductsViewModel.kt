@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import io.aethibo.rollback.features.products.ProductsIntent
 import io.aethibo.rollback.features.products.ProductsState
 import io.aethibo.rollback.framework.mvibase.IModel
-import io.aethibo.rollback.framework.utils.Resource
-import io.aethibo.rollback.usecases.GetProductsUseCase
+import io.aethibo.data.utils.Resource
+import io.aethibo.usecases.GetProductsUseCase
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

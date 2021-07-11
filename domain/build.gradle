@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+
+    // Kotlin
+    implementation libs.kotlinLib
+
+    // Moshi
+    implementation libs.moshi
+    implementation libs.moshiConverter
+    kapt libs.moshiCodeGen
+}

@@ -2,13 +2,13 @@ package io.aethibo.rollback.features.detail.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.aethibo.rollback.domain.mapped.ProductItem
 import io.aethibo.rollback.features.detail.DetailIntent
 import io.aethibo.rollback.features.detail.DetailState
 import io.aethibo.rollback.framework.mvibase.IModel
-import io.aethibo.rollback.framework.utils.Resource
-import io.aethibo.rollback.usecases.DeleteProductUseCase
-import io.aethibo.rollback.usecases.GetProductUseCase
+import io.aethibo.data.utils.Resource
+import io.aethibo.domain.mapped.ProductItem
+import io.aethibo.usecases.DeleteProductUseCase
+import io.aethibo.usecases.GetProductUseCase
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -11,8 +11,8 @@ import com.afollestad.vvalidator.field.input.InputLayoutField
 import com.afollestad.vvalidator.form
 import io.aethibo.rollback.R
 import io.aethibo.rollback.databinding.FragmentLoginBinding
-import io.aethibo.rollback.domain.mapped.UserItem
-import io.aethibo.rollback.domain.request.UserRequest
+import io.aethibo.domain.mapped.UserItem
+import io.aethibo.domain.request.UserRequest
 import io.aethibo.rollback.features.login.LoginIntent
 import io.aethibo.rollback.features.login.LoginIntent.GetUsers
 import io.aethibo.rollback.features.login.LoginState
@@ -62,7 +62,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), IView<LoginState> {
                 val password: String = it["tilLoginPassword"]?.value.toString()
 
                 lifecycleScope.launch {
-                    val userRequest = UserRequest(username, password)
+                    val userRequest = io.aethibo.domain.request.UserRequest(username, password)
                     viewModel.intents.send(LoginIntent.LoginUser(userRequest))
                 }
             }
@@ -81,7 +81,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), IView<LoginState> {
         }
     }
 
-    private fun getUserFromUsers(users: List<UserItem>) {
+    private fun getUserFromUsers(users: List<io.aethibo.domain.mapped.UserItem>) {
         if (users.isNotEmpty() && !isHandled)
             users.random().apply {
                 binding.tilLoginUsername.editText?.setText(username)
