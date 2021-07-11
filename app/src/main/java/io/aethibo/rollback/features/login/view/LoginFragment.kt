@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import coil.load
-import coil.transform.CircleCropTransformation
 import com.afollestad.vvalidator.field.input.InputLayoutField
 import com.afollestad.vvalidator.form
 import io.aethibo.rollback.R
@@ -29,6 +27,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), IView<LoginState> {
 
     private val binding: FragmentLoginBinding by viewBinding()
     private val viewModel: LoginViewModel by viewModel()
+    private var isHandled = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,18 +82,12 @@ class LoginFragment : Fragment(R.layout.fragment_login), IView<LoginState> {
     }
 
     private fun getUserFromUsers(users: List<UserItem>) {
-        if (users.isNotEmpty())
+        if (users.isNotEmpty() && !isHandled)
             users.random().apply {
-                binding.ivLoginImage.apply {
-                    isVisible = true
-                    load("https://i.pravatar.cc") {
-                        crossfade(true)
-                        transformations(CircleCropTransformation())
-                    }
-                }
                 binding.tilLoginUsername.editText?.setText(username)
                 binding.tilLoginPassword.editText?.setText(password)
                 binding.btnSignInUser.isEnabled = true
+                isHandled = true
             }
     }
 }

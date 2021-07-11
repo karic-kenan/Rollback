@@ -59,7 +59,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail), View.OnClickListener,
 
             product?.let { handleProduct(it) }
 
-            isProductDeleted?.let { if (it) snackBar("Product is deleted") }
+            isProductDeleted?.let { if (it) snackBar(getString(R.string.labelProductDeleted)) }
 
             errorMessage?.let { snackBar(it) }
         }
@@ -73,7 +73,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail), View.OnClickListener,
         binding.itemProductTitle.text = product.title
         binding.itemProductDescription.text = product.description
         binding.itemProductCategory.text = product.category
-        binding.itemProductPrice.text = "$${product.price}"
+        binding.itemProductPrice.text = getString(R.string.labelProductPrice, product.price.toString())
     }
 
     override fun onClick(view: View?) {

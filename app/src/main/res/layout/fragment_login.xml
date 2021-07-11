@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:indeterminate="true"
-        android:indeterminateTint="#FF5722"
+        android:indeterminateTint="@color/purple_500"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/bold"
-            android:gravity="center"
             android:textSize="24sp"
             tools:text="Title" />
 
@@ -38,27 +37,16 @@
             android:id="@+id/tvLoginSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="48dp"
             android:fontFamily="@font/light"
-            android:gravity="center"
             tools:text="Subtitle" />
-
-        <ImageView
-            android:id="@+id/ivLoginImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
-            android:visibility="gone"
-            tools:srcCompat="@tools:sample/avatars"
-            tools:visibility="visible" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilLoginUsername"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter username"
+            android:hint="@string/labelSignInUsernameHint"
             app:endIconMode="clear_text"
             app:errorEnabled="true">
 
@@ -74,7 +62,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter password"
+            android:hint="@string/labelSignInPasswordHint"
             app:errorEnabled="true"
             app:passwordToggleEnabled="true">
 
@@ -91,8 +79,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="Sign in" />
+            android:padding="16dp"
+            android:text="@string/labelSignInButton"
+            android:textAllCaps="true" />
 
     </LinearLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

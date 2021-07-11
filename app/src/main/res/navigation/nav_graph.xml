@@ -28,12 +28,6 @@
         tools:layout="@layout/fragment_detail" />
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="io.aethibo.rollback.features.profile.view.ProfileFragment"
-        android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
-
-    <fragment
         android:id="@+id/productsFragment"
         android:name="io.aethibo.rollback.features.products.view.ProductsFragment"
         android:label="ProductsFragment"

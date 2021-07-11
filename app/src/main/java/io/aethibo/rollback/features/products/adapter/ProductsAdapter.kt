@@ -55,14 +55,14 @@ class ProductsAdapter : ListAdapter<ProductItem, ProductsAdapter.ProductsViewHol
             category.text = product.category
 
             price.apply {
-                text = "$${product.price}"
+                text = context.getString(R.string.labelProductPrice, product.price.toString())
                 setTextColor(ContextCompat.getColor(itemView.context, R.color.teal_700))
             }
 
             val newPrice = product.price.times(1.5)
             val rounded = BigDecimal(newPrice).setScale(2, RoundingMode.HALF_UP).toDouble()
             biggerPrice.apply {
-                text = "$$rounded"
+                text = context.getString(R.string.labelProductPrice, rounded.toString())
                 paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             }
 

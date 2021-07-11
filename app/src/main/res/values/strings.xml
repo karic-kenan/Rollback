@@ -1,5 +1,24 @@
 <resources>
     <string name="app_name">Rollback</string>
+
+    <!-- Sign in -->
     <string name="labelLoginTitle">Sign in</string>
     <string name="labelLoginSubtitle">Wait for the account to get fetched, then proceed with signing into that account</string>
+    <string name="labelSignInButton">Sign in</string>
+    <string name="labelSignInPasswordHint">Enter password</string>
+    <string name="labelSignInUsernameHint">Enter username</string>
+
+    <!-- Product item -->
+    <string name="labelProductPrice">$ %s</string>
+
+    <!-- Product item detail -->
+    <string name="labelDetailDeleteBtn">Delete product</string>
+
+    <!-- Product add -->
+    <string name="labelAddProductTitle">Enter product title</string>
+    <string name="labelAddProductDescription">Enter product description</string>
+    <string name="labelAddProductCategory">Enter product category</string>
+    <string name="labelAddProductPrice">Enter product price</string>
+    <string name="labelAddProductBtn">Add product</string>
+    <string name="labelProductDeleted">Product is deleted</string>
 </resources>
