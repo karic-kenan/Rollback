@@ -2,15 +2,15 @@ package io.aethibo.rollback.features.add.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.aethibo.data.utils.Resource
+import io.aethibo.data.utils.Resource.Failure
+import io.aethibo.data.utils.Resource.Success
+import io.aethibo.domain.mapped.ProductItem
 import io.aethibo.rollback.features.add.AddProductIntent
 import io.aethibo.rollback.features.add.AddProductIntent.AddProduct
 import io.aethibo.rollback.features.add.AddProductIntent.GetCategories
 import io.aethibo.rollback.features.add.AddProductState
 import io.aethibo.rollback.framework.mvibase.IModel
-import io.aethibo.data.utils.Resource
-import io.aethibo.data.utils.Resource.Failure
-import io.aethibo.data.utils.Resource.Success
-import io.aethibo.domain.mapped.ProductItem
 import io.aethibo.usecases.AddProductUseCase
 import io.aethibo.usecases.GetCategoriesUseCase
 import kotlinx.coroutines.channels.Channel
@@ -46,7 +46,7 @@ class AddViewModel(
         }
     }
 
-    fun addProduct(product: io.aethibo.domain.request.AddProductRequest) {
+    private fun addProduct(product: io.aethibo.domain.request.AddProductRequest) {
         viewModelScope.launch {
             updateState { it.copy(isLoading = true) }
 

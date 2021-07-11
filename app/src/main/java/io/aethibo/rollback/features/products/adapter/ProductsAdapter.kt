@@ -12,18 +12,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import io.aethibo.rollback.R
 import io.aethibo.domain.mapped.ProductItem
+import io.aethibo.rollback.R
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class ProductsAdapter : ListAdapter<io.aethibo.domain.mapped.ProductItem, ProductsAdapter.ProductsViewHolder>(Companion) {
+class ProductsAdapter : ListAdapter<ProductItem, ProductsAdapter.ProductsViewHolder>(Companion) {
 
-    companion object : DiffUtil.ItemCallback<io.aethibo.domain.mapped.ProductItem>() {
-        override fun areItemsTheSame(oldItem: io.aethibo.domain.mapped.ProductItem, newItem: io.aethibo.domain.mapped.ProductItem): Boolean =
+    companion object : DiffUtil.ItemCallback<ProductItem>() {
+        override fun areItemsTheSame(oldItem: ProductItem, newItem: ProductItem): Boolean =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: io.aethibo.domain.mapped.ProductItem, newItem: io.aethibo.domain.mapped.ProductItem): Boolean =
+        override fun areContentsTheSame(oldItem: ProductItem, newItem: ProductItem): Boolean =
             oldItem.hashCode() == newItem.hashCode()
     }
 
@@ -37,7 +37,7 @@ class ProductsAdapter : ListAdapter<io.aethibo.domain.mapped.ProductItem, Produc
     }
 
     inner class ProductsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun onBind(product: io.aethibo.domain.mapped.ProductItem) = with(itemView) {
+        fun onBind(product: ProductItem) = with(itemView) {
 
             /**
              * Get views
@@ -80,9 +80,9 @@ class ProductsAdapter : ListAdapter<io.aethibo.domain.mapped.ProductItem, Produc
     /**
      * Click listeners
      */
-    private var onProductClickListener: ((io.aethibo.domain.mapped.ProductItem) -> Unit)? = null
+    private var onProductClickListener: ((ProductItem) -> Unit)? = null
 
-    fun onProductEventClickListener(listener: (io.aethibo.domain.mapped.ProductItem) -> Unit) {
+    fun onProductEventClickListener(listener: (ProductItem) -> Unit) {
         onProductClickListener = listener
     }
 }

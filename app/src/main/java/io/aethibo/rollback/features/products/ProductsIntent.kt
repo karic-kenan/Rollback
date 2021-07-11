@@ -4,5 +4,4 @@ import io.aethibo.rollback.framework.mvibase.IIntent
 
 sealed class ProductsIntent : IIntent {
     object GetProducts : ProductsIntent()
-    // TODO: Add delete product
 }

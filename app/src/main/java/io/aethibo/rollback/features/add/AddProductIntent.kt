@@ -5,5 +5,5 @@ import io.aethibo.rollback.framework.mvibase.IIntent
 
 sealed class AddProductIntent : IIntent {
     object GetCategories : AddProductIntent()
-    data class AddProduct(val product: io.aethibo.domain.request.AddProductRequest) : AddProductIntent()
+    data class AddProduct(val product: AddProductRequest) : AddProductIntent()
 }

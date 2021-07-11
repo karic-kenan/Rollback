@@ -5,7 +5,7 @@ import io.aethibo.rollback.framework.mvibase.IState
 
 data class AddProductState(
     val isLoading: Boolean = false,
-    val product: io.aethibo.domain.mapped.ProductItem? = null,
+    val product: ProductItem? = null,
     val categories: List<String> = emptyList(),
     val errorMessage: String? = null
 ) : IState

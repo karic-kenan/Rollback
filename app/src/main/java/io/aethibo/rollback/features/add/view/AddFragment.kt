@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.afollestad.vvalidator.field.input.InputLayoutField
 import com.afollestad.vvalidator.form
+import io.aethibo.domain.request.AddProductRequest
 import io.aethibo.rollback.R
 import io.aethibo.rollback.databinding.FragmentAddBinding
-import io.aethibo.domain.request.AddProductRequest
 import io.aethibo.rollback.features.add.AddProductIntent.AddProduct
 import io.aethibo.rollback.features.add.AddProductIntent.GetCategories
 import io.aethibo.rollback.features.add.AddProductState
@@ -74,7 +74,7 @@ class AddFragment : Fragment(R.layout.fragment_add), IView<AddProductState> {
         val category = binding.ilProductCategory.editText?.text.toString()
         val price = binding.ilProductPrice.editText?.text.toString().toDouble()
 
-        val product = io.aethibo.domain.request.AddProductRequest(
+        val product = AddProductRequest(
             title = title,
             description = description,
             price = price,

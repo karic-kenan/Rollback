@@ -5,5 +5,5 @@ import io.aethibo.rollback.framework.mvibase.IIntent
 
 sealed class LoginIntent: IIntent {
     object GetUsers : LoginIntent()
-    data class LoginUser(val user: io.aethibo.domain.request.UserRequest) : LoginIntent()
+    data class LoginUser(val user: UserRequest) : LoginIntent()
 }
