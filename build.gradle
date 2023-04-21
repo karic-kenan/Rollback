@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:${versions.gradleToolsVersion}"
+        classpath "com.android.tools.build:gradle:$versions.gradleToolsVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlinVersion}"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navComponentsVersion}"
 
@@ -20,7 +20,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 
